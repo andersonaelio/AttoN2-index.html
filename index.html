@@ -1,1 +1,328 @@
+<!DOCTYPE html>
+<!--
+  ATTON STREET — direção 2
+  1. head  2. CSS: tokens > base > barra > hero > tira > filtros >
+     lista > item > editorial > rodapé   3. HTML   4. JS
+  Regra: preto absoluto, vermelho estrutural, tipografia condensada gigante,
+  preço como elemento gráfico, nada perfeitamente alinhado.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ATTON — Street</title>
+<meta name="description" content="Entrou. Saiu. Sem reposição.">
+<meta property="og:title" content="ATTON">
+<meta property="og:description" content="Entrou. Saiu. Sem reposição.">
+<meta property="og:image" content="img/editorial2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23FF2D20'/%3E%3Ctext x='16' y='24' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='%23000' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..900&family=Archivo+Narrow:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --preto:#000;
+  --grafite:#141414;
+  --grafite2:#1e1e1e;
+  --branco:#fff;
+  --verm:#FF2D20;
+  --f:'Archivo',Arial Narrow,sans-serif;
+  --rapido:.22s cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--preto);color:var(--branco);font-family:var(--f);font-size:16px;line-height:1.4;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a,button{color:inherit;text-decoration:none;font-family:inherit}
+.w{width:min(1440px,94vw);margin-inline:auto}
+.cond{font-stretch:70%}
+.ultra{font-stretch:62%;font-weight:900;letter-spacing:-.015em;line-height:.82;text-transform:uppercase}
 
+/* ---------- barra fixa ---------- */
+.barra{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--preto);border-bottom:2px solid var(--verm)}
+.barra-in{display:flex;align-items:stretch;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;font-stretch:62%;font-weight:900;font-size:30px;letter-spacing:-.02em}
+.logo b{color:var(--verm)}
+.barra-cta{display:flex;align-items:center;gap:10px;background:var(--verm);color:#000;padding:0 22px;
+  font-stretch:75%;font-weight:900;font-size:15px;letter-spacing:.1em;text-transform:uppercase;transition:filter var(--rapido)}
+.barra-cta:hover{filter:brightness(1.15)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:96svh;min-height:560px;margin-top:64px;overflow:hidden;background:#000}
+.hero .base{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero .rastro{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  filter:blur(0px) url(#arrasto);
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 26%,transparent 74%,#000 100%);
+          mask-image:linear-gradient(90deg,#000 0%,transparent 26%,transparent 74%,#000 100%);
+}
+.hero .veu{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0,rgba(0,0,0,.1) 40%,rgba(0,0,0,.9) 100%)}
+.hero-txt{position:absolute;left:0;right:0;bottom:0;padding:0 3vw 4vh}
+.hero-txt h1{font-stretch:62%;font-weight:900;font-size:clamp(64px,15.5vw,235px);line-height:.79;letter-spacing:-.02em;text-transform:uppercase}
+.hero-txt h1 em{font-style:normal;color:var(--verm)}
+.hero-linha{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:22px}
+.selo{background:var(--verm);color:#000;padding:7px 13px;font-stretch:75%;font-weight:900;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.hero-linha span{font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#b9b9b9}
+
+/* ---------- tira ---------- */
+.tira{background:var(--verm);color:#000;padding:16px 0}
+.tira-in{display:flex;flex-wrap:wrap;gap:10px 40px;font-stretch:70%;font-weight:900;font-size:clamp(17px,2.5vw,30px);letter-spacing:.02em;text-transform:uppercase}
+
+/* ---------- filtros ---------- */
+.filtros{position:sticky;top:64px;z-index:50;background:var(--preto);border-bottom:1px solid #262626}
+.filtros-in{display:flex;align-items:center;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.filtros-in::-webkit-scrollbar{display:none}
+.fbt{
+  flex:0 0 auto;background:var(--grafite);border:0;cursor:pointer;color:#8d8d8d;
+  font-stretch:70%;font-weight:900;font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  padding:11px 18px;transition:background var(--rapido),color var(--rapido);
+}
+.fbt:hover{background:var(--grafite2);color:var(--branco)}
+.fbt[aria-pressed="true"]{background:var(--verm);color:#000}
+#q{
+  flex:1 1 200px;min-width:150px;background:var(--grafite);border:0;color:var(--branco);
+  font-family:var(--f);font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.06em;
+  padding:11px 16px;text-transform:uppercase;
+}
+#q::placeholder{color:#6a6a6a}
+#q:focus{outline:2px solid var(--verm);outline-offset:-2px}
+
+/* ---------- catálogo ---------- */
+main{padding:0 0 30px}
+.bloco{padding:clamp(40px,6vw,86px) 0 0}
+.bloco-cab{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:2px solid var(--verm);margin-bottom:26px}
+.bloco-cab h2{font-stretch:62%;font-weight:900;font-size:clamp(40px,8vw,116px);line-height:.82;letter-spacing:-.02em;text-transform:uppercase}
+.bloco-cab .n{font-stretch:75%;font-weight:900;font-size:clamp(15px,2vw,22px);letter-spacing:.14em;color:var(--verm);white-space:nowrap}
+.lista{display:grid;gap:4px;grid-template-columns:repeat(auto-fill,minmax(268px,1fr))}
+
+/* item — desalinhado de propósito */
+.item{position:relative;background:var(--grafite);overflow:hidden}
+.item:nth-child(3n+2){transform:translateY(28px)}
+.item:nth-child(4n+3){transform:translateY(-16px)}
+@media(max-width:700px){.item{transform:none !important}}
+.item .foto{position:relative;aspect-ratio:3/4;overflow:hidden;background:#0b0b0b}
+.item.alto .foto{aspect-ratio:9/16}
+.item.quad .foto{aspect-ratio:1/1}
+.item .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.item .foto img.b{opacity:0;transition:opacity .3s ease}
+.item:hover .foto img.b,.item.vendo .foto img.b{opacity:1}
+.idx{position:absolute;top:0;left:0;background:#000;color:var(--verm);font-stretch:70%;font-weight:900;font-size:16px;letter-spacing:.1em;padding:6px 10px;z-index:2}
+.unica{position:absolute;top:0;right:0;background:var(--verm);color:#000;font-stretch:70%;font-weight:900;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;z-index:2}
+.item .dados{padding:14px 16px 18px}
+.item .tit{font-stretch:75%;font-weight:900;font-size:19px;line-height:1.08;text-transform:uppercase;letter-spacing:-.005em}
+.item .sub{font-stretch:80%;font-weight:500;font-size:14px;color:#8d8d8d;margin-top:5px;letter-spacing:.04em;text-transform:uppercase}
+.valor{display:flex;align-items:flex-end;gap:6px;margin-top:12px;line-height:.8}
+.valor .cif{font-stretch:75%;font-weight:900;font-size:19px;color:#8d8d8d;padding-bottom:5px}
+.valor .num{font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,74px);letter-spacing:-.035em}
+.levar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;
+  background:var(--branco);color:#000;padding:12px 15px;
+  font-stretch:75%;font-weight:900;font-size:15px;letter-spacing:.11em;text-transform:uppercase;
+  transition:background var(--rapido),color var(--rapido);
+}
+.levar span.seta{transition:transform var(--rapido)}
+.item:hover .levar{background:var(--verm)}
+.item:hover .levar span.seta{transform:translateX(6px)}
+.trocar{position:absolute;left:0;bottom:0;background:#000;color:#fff;border:0;cursor:pointer;
+  font-stretch:75%;font-weight:900;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;z-index:2}
+
+/* ---------- editorial ---------- */
+.ed{position:relative;margin:clamp(46px,7vw,96px) 0;overflow:hidden;background:#000}
+.ed img{width:100%;height:clamp(300px,50vw,600px);object-fit:cover;object-position:center 38%}
+.ed .frase{position:absolute;left:3vw;bottom:6%;font-stretch:62%;font-weight:900;font-size:clamp(38px,8.5vw,124px);line-height:.82;text-transform:uppercase;letter-spacing:-.02em}
+.ed .frase em{font-style:normal;color:var(--verm)}
+.ed .marcador{position:absolute;top:0;right:0;background:var(--verm);color:#000;padding:9px 15px;font-stretch:70%;font-weight:900;font-size:15px;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- vazio ---------- */
+#vazio{display:none;padding:70px 0 100px}
+#vazio p{font-stretch:62%;font-weight:900;font-size:clamp(34px,7vw,84px);text-transform:uppercase;line-height:.85}
+#vazio p em{font-style:normal;color:var(--verm)}
+#vazio span{display:block;margin-top:16px;font-stretch:80%;font-weight:600;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:#8d8d8d}
+
+/* ---------- rodapé ---------- */
+footer{border-top:2px solid var(--verm);padding:clamp(44px,6vw,80px) 0 0;background:#000}
+.rg{display:grid;grid-template-columns:1fr;gap:26px}
+@media(min-width:860px){.rg{grid-template-columns:1fr auto;align-items:end}}
+.rg h3{font-stretch:62%;font-weight:900;font-size:clamp(34px,6vw,86px);line-height:.85;text-transform:uppercase;letter-spacing:-.02em}
+.rg h3 em{font-style:normal;color:var(--verm)}
+.rzap{display:inline-flex;align-items:center;gap:10px;margin-top:20px;background:var(--verm);color:#000;padding:16px 24px;
+  font-stretch:75%;font-weight:900;font-size:16px;letter-spacing:.11em;text-transform:uppercase;transition:filter var(--rapido)}
+.rzap:hover{filter:brightness(1.15)}
+.rdados{font-stretch:80%;font-weight:600;font-size:14px;letter-spacing:.09em;text-transform:uppercase;color:#7e7e7e;line-height:2.1}
+.assin{font-stretch:62%;font-weight:900;font-size:clamp(70px,21vw,290px);line-height:.75;letter-spacing:-.035em;margin-top:clamp(34px,6vw,70px);text-align:center;overflow:hidden}
+.rfim{border-top:1px solid #232323;margin-top:20px;padding:14px 0 24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;
+  font-stretch:80%;font-weight:600;font-size:14px;letter-spacing:.09em;text-transform:uppercase;color:#767676}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="arrasto"><feGaussianBlur stdDeviation="16 0"/></filter>
+</defs></svg>
+
+<div class="barra">
+  <div class="w barra-in">
+    <div class="logo">ATT<b>O</b>N</div>
+    <a class="barra-cta" id="zapBarra" href="#" target="_blank" rel="noopener">Zap <span>→</span></a>
+  </div>
+</div>
+
+<header class="hero">
+  <img class="base" src="img/editorial2.jpg" alt="">
+  <img class="rastro" src="img/editorial2.jpg" alt="" aria-hidden="true">
+  <div class="veu"></div>
+  <div class="hero-txt">
+    <h1>Entrou.<br><em>Saiu.</em></h1>
+    <div class="hero-linha">
+      <span class="selo">Sem reposição</span>
+      <span>Estoque curto</span>
+      <span>Giro rápido</span>
+      <span>Fecha no zap</span>
+    </div>
+  </div>
+</header>
+
+<div class="tira"><div class="w tira-in">
+  <span>Peça única</span><span>·</span><span>Sem grade cheia</span><span>·</span><span>Chegou hoje</span><span>·</span><span>Acabou, acabou</span>
+</div></div>
+
+<div class="filtros">
+  <div class="w filtros-in" id="filtros"></div>
+</div>
+
+<main class="w">
+  <div id="lista"></div>
+  <div id="vazio"><p>Não <em>tem.</em></p><span>Chama no zap que a gente caça</span></div>
+</main>
+
+<figure class="ed">
+  <img src="img/editorial.jpg" alt="">
+  <div class="marcador">Na rua</div>
+  <div class="frase">Aqui não<br>tem <em>fila.</em></div>
+</figure>
+
+<footer>
+  <div class="w rg">
+    <div>
+      <h3>Viu e<br>gostou? <em>Corre.</em></h3>
+      <a class="rzap" id="zapRod" href="#" target="_blank" rel="noopener">Chamar no zap <span>→</span></a>
+    </div>
+    <div class="rdados">Seg a sáb<br>Entrega combinada no zap<br>@atton</div>
+  </div>
+  <div class="w assin">ATTON</div>
+  <div class="w rfim"><span>Demonstração — Phosphoros Studio</span><span>Fotos e preços ilustrativos</span></div>
+</footer>
+
+<script>
+const CONFIG = {
+  whatsapp: "5548000000000",
+  categorias: [
+    { id:"polo",    titulo:"Lacoste" },
+    { id:"esporte", titulo:"Nike" },
+    { id:"tenis",   titulo:"Tênis" },
+    { id:"perfume", titulo:"Perfumaria" }
+  ]
+};
+
+const PRODUTOS = [
+  { cat:"polo", nome:"Polo piquet monograma verde", det:"P ao GG · gola listrada", preco:189, unica:"Últimas 2",
+    img:"img/polo-01.jpg", img2:"img/polo-01b.jpg" },
+  { cat:"polo", nome:"Jaqueta track creme e bordô", det:"M ao GG · zíper frontal", preco:299, unica:"Peça única",
+    fmt:"alto", img:"img/polo-02.jpg", img2:"img/polo-02b.jpg" },
+
+  { cat:"esporte", nome:"Corta-vento preto vivo branco", det:"M ao GG · gola alta", preco:279, unica:"",
+    img:"img/esporte-01.jpg", img2:"img/esporte-01b.jpg" },
+  { cat:"esporte", nome:"Jaqueta sherpa off-white e azul", det:"M ao GG · dupla face", preco:399, unica:"Só 1 na G",
+    img:"img/esporte-02.jpg" },
+  { cat:"esporte", nome:"Calça track branca e preta", det:"P ao GG · punho com cordão", preco:229, unica:"",
+    fmt:"alto", img:"img/esporte-03.jpg" },
+
+  { cat:"tenis", nome:"Tênis chunky creme", det:"39 ao 43 · solado gum", preco:349, unica:"",
+    fmt:"quad", img:"img/tenis-01.jpg" },
+  { cat:"tenis", nome:"Tênis runner preto e verde", det:"38 ao 43 · camurça e nylon", preco:329, unica:"Última numeração",
+    fmt:"alto", img:"img/tenis-02.jpg" },
+  { cat:"tenis", nome:"Tênis low verde e marinho", det:"37 ao 43 · couro", preco:399, unica:"Mais procurado",
+    img:"img/tenis-03.jpg" },
+  { cat:"tenis", nome:"Tênis retrô creme e preto", det:"36 ao 42 · camurça e couro", preco:449, unica:"",
+    img:"img/tenis-04.jpg" },
+
+  { cat:"perfume", nome:"Eau de parfum frasco preto", det:"100ml · amadeirado", preco:349, unica:"",
+    fmt:"alto", img:"img/perfume-01.jpg" },
+  { cat:"perfume", nome:"Parfum frasco azul-marinho", det:"100ml · cítrico amadeirado", preco:699, unica:"Últimos 2",
+    fmt:"quad", img:"img/perfume-02.jpg" },
+  { cat:"perfume", nome:"Eau de toilette com caixa", det:"100ml · oriental especiado", preco:399, unica:"",
+    img:"img/perfume-03.jpg" }
+];
+
+const num = n => n.toFixed(0);
+const zap = t => `https://wa.me/${CONFIG.whatsapp}?text=` + encodeURIComponent(t);
+document.getElementById("zapBarra").href =
+document.getElementById("zapRod").href = zap("Oi! Vim pelo site da ATTON.");
+
+let filtro = "todos";
+const cx = document.getElementById("filtros");
+const bq = document.createElement("input");
+bq.id = "q"; bq.type = "search"; bq.placeholder = "Buscar"; bq.autocomplete = "off";
+[{id:"todos",titulo:"Tudo"}, ...CONFIG.categorias].forEach(c => {
+  const b = document.createElement("button");
+  b.className = "fbt"; b.type = "button"; b.textContent = c.titulo;
+  b.setAttribute("aria-pressed", c.id === "todos");
+  b.onclick = () => { filtro = c.id;
+    [...cx.querySelectorAll(".fbt")].forEach(x => x.setAttribute("aria-pressed", x === b));
+    render(); };
+  cx.appendChild(b);
+});
+cx.appendChild(bq);
+
+function item(p, i){
+  const el = document.createElement("article");
+  el.className = "item" + (p.fmt ? " " + p.fmt : "");
+  el.innerHTML = `
+    <div class="foto">
+      <span class="idx">${String(i).padStart(2,"0")}</span>
+      ${p.unica ? `<span class="unica">${p.unica}</span>` : ""}
+      <img src="${p.img}" alt="${p.nome}" loading="lazy">
+      ${p.img2 ? `<img class="b" src="${p.img2}" alt="" loading="lazy">` : ""}
+      ${p.img2 ? `<button class="trocar" type="button">Ver vestida</button>` : ""}
+    </div>
+    <div class="dados">
+      <div class="tit">${p.nome}</div>
+      <div class="sub">${p.det}</div>
+      <div class="valor"><span class="cif">R$</span><span class="num">${num(p.preco)}</span></div>
+      <a class="levar" href="${zap(`Oi! Quero: ${p.nome} — R$ ${num(p.preco)}. Ainda tem?`)}" target="_blank" rel="noopener">
+        Quero essa <span class="seta">→</span>
+      </a>
+    </div>`;
+  const t = el.querySelector(".trocar");
+  if (t) t.onclick = e => { e.preventDefault(); el.classList.toggle("vendo"); };
+  return el;
+}
+
+function render(){
+  const termo = document.getElementById("q").value.trim().toLowerCase();
+  const alvo = document.getElementById("lista");
+  alvo.innerHTML = ""; let total = 0, n = 1;
+
+  CONFIG.categorias.forEach(cat => {
+    if (filtro !== "todos" && filtro !== cat.id) return;
+    const itens = PRODUTOS.filter(p => p.cat === cat.id && (termo === "" ||
+      (p.nome+" "+p.det+" "+cat.titulo+" "+p.preco).toLowerCase().includes(termo)));
+    if (!itens.length) return;
+    total += itens.length;
+    const sec = document.createElement("section");
+    sec.className = "bloco";
+    sec.innerHTML = `<div class="bloco-cab"><h2>${cat.titulo}</h2>
+      <span class="n">${String(itens.length).padStart(2,"0")} ${itens.length===1?"peça":"peças"} →</span></div>`;
+    const g = document.createElement("div"); g.className = "lista";
+    itens.forEach(p => g.appendChild(item(p, n++)));
+    sec.appendChild(g); alvo.appendChild(sec);
+  });
+
+  document.getElementById("vazio").style.display = total ? "none" : "block";
+}
+document.getElementById("q").addEventListener("input", render);
+render();
+</script>
+</body>
+</html>
